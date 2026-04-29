@@ -1,33 +1,30 @@
-import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-/**
- * Lớp chính của ứng dụng.
- */
 public class App {
+    // Khởi tạo Logger cho class App
+    private static final Logger logger = LoggerFactory.getLogger(App.class);
 
-    /**
-     * Điểm bắt đầu của chương trình khi chạy file JAR.
-     */
     public static void main(String[] args) {
         App app = new App();
-        String input = "hello maven world";
-        String result = app.capitalizeString(input);
+        logger.info("Ứng dụng bắt đầu khởi chạy..."); // Mức INFO
 
-        System.out.println("---------------------------------------");
-        System.out.println("Ứng dụng đã khởi chạy thành công!");
-        System.out.println("Input: " + input);
-        System.out.println("Output: " + result);
-        System.out.println("---------------------------------------");
+        try {
+            String input = "professional logging";
+            String result = app.processData(input);
+            // Parameterized logging: Không dùng cộng chuỗi (+)
+            logger.info("Xử lý dữ liệu thành công. Input: '{}', Output: '{}'", input, result);
+        } catch (Exception e) {
+            // Log lỗi kèm theo StackTrace
+            logger.error("Đã xảy ra lỗi nghiêm trọng trong hàm main", e);
+        }
     }
 
-    /**
-     * Viết hoa chữ cái đầu tiên của chuỗi.
-     */
-    public String capitalizeString(String input) {
+    public String processData(String input) {
         if (input == null) {
-            return null;
+            logger.error("Dữ liệu đầu vào bị null!");
+            throw new IllegalArgumentException("Input cannot be null");
         }
-        // Sử dụng thư viện Apache Commons Lang3
-        return StringUtils.capitalize(input);
+        return input.toUpperCase();
     }
 }

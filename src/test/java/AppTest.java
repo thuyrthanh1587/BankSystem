@@ -1,28 +1,17 @@
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
-
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * Kiểm thử đơn vị cho lớp App.
- */
 public class AppTest {
-
     @Test
-    public void testCapitalizeString_Normal() {
+    void testProcessDataSuccess() {
         App app = new App();
-        assertEquals("Hello", app.capitalizeString("hello"));
+        assertEquals("HELLO", app.processData("hello"));
     }
 
     @Test
-    public void testCapitalizeString_Null() {
+    void testProcessDataError() {
         App app = new App();
-        assertNull(app.capitalizeString(null));
-    }
-
-    @Test
-    public void testCapitalizeString_Empty() {
-        App app = new App();
-        assertEquals("", app.capitalizeString(""));
+        // Test này sẽ kích hoạt dòng logger.error trong App.java
+        assertThrows(IllegalArgumentException.class, () -> app.processData(null));
     }
 }
