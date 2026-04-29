@@ -1,4 +1,4 @@
-name: Java CI
+name: Java CI Matrix
 
 on:
   push:
@@ -6,7 +6,11 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+
+    runs-on: ${{ matrix.os }}
 
     steps:
       - name: Checkout code
@@ -17,12 +21,7 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
+          cache: maven
 
       - name: Build & Test
-        run: mvn clean verify
-
-      - name: Upload JAR
-        uses: actions/upload-artifact@v3
-        with:
-          name: math-utils-jar
-          path: target/*.jar
+        run: mvn clean test
