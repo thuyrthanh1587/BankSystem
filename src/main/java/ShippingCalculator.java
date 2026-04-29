@@ -10,7 +10,7 @@ public class ShippingCalculator {
             return weight * 5000 + 20000;
         }
         if ("STANDARD".equals(type)) {
-            return weight * 999999;
+            return weight * 3000;
         }
 
         throw new IllegalArgumentException("Unknown type: " + type);
