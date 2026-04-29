@@ -1,4 +1,4 @@
-name: Java CI Matrix
+name: Java CI with Coverage
 
 on:
   push:
@@ -23,5 +23,12 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: Build & Test
-        run: mvn clean test
+      - name: Build with Maven (run tests + coverage)
+        run: mvn clean verify
+
+      # 📦 Upload JaCoCo report
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v3
+        with:
+          name: jacoco-report-${{ matrix.os }}
+          path: target/site/jacoco/
