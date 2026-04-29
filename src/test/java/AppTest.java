@@ -1,27 +1,28 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import org.junit.jupiter.api.Test;
 
 /**
- * Unit test for App.
- * Google Checkstyle yêu cầu Javadoc cho các class public.
+ * Kiểm thử đơn vị cho lớp App.
  */
 public class AppTest {
 
-    /**
-     * Test case cho phương thức capitalizeString.
-     */
     @Test
-    public void testCapitalize() {
+    public void testCapitalizeString_Normal() {
         App app = new App();
-
-        // Kiểm tra trường hợp thông thường
         assertEquals("Hello", app.capitalizeString("hello"));
+    }
 
-        // Kiểm tra trường hợp input là null
-        assertEquals(null, app.capitalizeString(null));
+    @Test
+    public void testCapitalizeString_Null() {
+        App app = new App();
+        assertNull(app.capitalizeString(null));
+    }
 
-        // Kiểm tra trường hợp chuỗi rỗng
+    @Test
+    public void testCapitalizeString_Empty() {
+        App app = new App();
         assertEquals("", app.capitalizeString(""));
     }
 }

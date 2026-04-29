@@ -1,27 +1,33 @@
 import org.apache.commons.lang3.StringUtils;
 
 /**
- * Lớp App để minh họa Checkstyle và Logic.
- * (Google Checks yêu cầu có Javadoc cho public class).
+ * Lớp chính của ứng dụng.
  */
 public class App {
 
-    // LỖI CỐ Ý ĐỂ BOT REVIEW: Tên biến sai chuẩn (phải là camelCase), thiếu private/public
-    int my_bad_variable = 10;
+    /**
+     * Điểm bắt đầu của chương trình khi chạy file JAR.
+     */
+    public static void main(String[] args) {
+        App app = new App();
+        String input = "hello maven world";
+        String result = app.capitalizeString(input);
+
+        System.out.println("---------------------------------------");
+        System.out.println("Ứng dụng đã khởi chạy thành công!");
+        System.out.println("Input: " + input);
+        System.out.println("Output: " + result);
+        System.out.println("---------------------------------------");
+    }
 
     /**
-     * Phương thức viết hoa chữ cái đầu.
+     * Viết hoa chữ cái đầu tiên của chuỗi.
      */
     public String capitalizeString(String input) {
         if (input == null) {
             return null;
         }
-        // Sử dụng thư viện từ bài 6
+        // Sử dụng thư viện Apache Commons Lang3
         return StringUtils.capitalize(input);
-    }
-
-    public void hello() {
-        // LỖI CỐ Ý: Thụt lề sai (Google check yêu cầu 2 hoặc 4 spaces đồng nhất)
-        System.out.println("Hello World");
     }
 }
