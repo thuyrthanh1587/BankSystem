@@ -6,7 +6,7 @@ public class ShippingCalculator {
         }
 
         // Sửa lỗi so sánh an toàn: "VALUE".equals(variable)
-        if ("EXPRESS".equals(type)) {
+        if (type.equals("EXPRESS")) {
             return weight * 5000 + 20000;
         }
         if ("STANDARD".equals(type)) {
